@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@theme {
+  --color-mova-red: #C62828;
+  --color-mova-orange: #F2994A;
+  --color-mova-gradient-start: #E63946;
+  --color-mova-bg: #E11D2E;
+
+}
