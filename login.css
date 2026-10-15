@@ -1,0 +1,172 @@
+/* ===== Base ===== */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: #111827;
+}
+
+/* ===== Painel esquerdo (vermelho) ===== */
+.painel-esquerdo {
+  background-color: #e5000b;
+  color: #fff;
+  padding: 60px;
+}
+
+.logo-icon {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.tag-branca {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.boas-vindas {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.boas-vindas .destaque {
+  color: #ffc9cd;
+}
+
+.descricao {
+  font-size: 1.05rem;
+  max-width: 380px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.rodape-esquerdo {
+  opacity: 0.8;
+}
+
+/* ===== Painel direito (formulário) ===== */
+.painel-direito {
+  background-color: #fff;
+  padding: 40px 20px;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 480px;
+}
+
+.link-voltar {
+  display: inline-block;
+  color: #6b7280;
+  text-decoration: none;
+  margin-bottom: 40px;
+}
+
+.link-voltar:hover {
+  color: #e5000b;
+}
+
+.tag-rosa {
+  display: inline-block;
+  background: #fde8ea;
+  color: #e5000b;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.titulo-form {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.subtitulo-form {
+  color: #6b7280;
+  margin-bottom: 36px;
+}
+
+/* ===== Campos ===== */
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.campo {
+  height: 56px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 0 20px;
+}
+
+.campo:focus {
+  border-color: #e5000b;
+  box-shadow: 0 0 0 3px rgba(229, 0, 11, 0.12);
+}
+
+.btn-olho {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  height: 56px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* ===== Links e botão ===== */
+.link-vermelho {
+  color: #e5000b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-vermelho:hover {
+  text-decoration: underline;
+}
+
+.btn-entrar {
+  height: 56px;
+  background-color: #e5000b;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-entrar:hover {
+  background-color: #c4000a;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 991px) {
+  .painel-esquerdo {
+    padding: 40px 28px;
+    gap: 40px;
+  }
+
+  .boas-vindas {
+    font-size: 2.2rem;
+  }
+}
