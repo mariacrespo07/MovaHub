@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solicitar acesso | MovaHub</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="login.css" rel="stylesheet">
+  <link href="solicitar.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container-fluid p-0">
+    <div class="row g-0 min-vh-100">
+
+      <!-- LADO ESQUERDO (vermelho) -->
+      <aside class="col-lg-5 painel-esquerdo sol">
+        <div class="painel-sticky d-flex flex-column justify-content-between">
+
+          <div class="d-flex align-items-center gap-2">
+            <span class="logo-icon"><i class="bi bi-broadcast"></i></span>
+            <span class="logo-text">MovaHub</span>
+          </div>
+
+          <div>
+            <span class="tag-branca">FabLab / Empresa</span>
+            <h1 class="boas-vindas">
+              Solicite seu acesso,<br>
+              <span class="destaque">Fabricante</span>
+            </h1>
+            <p class="descricao">
+              Conte um pouco sobre sua estrutura. A AACD analisa o pedido
+              e envia a resposta por e-mail.
+            </p>
+
+            <ol class="passos">
+              <li>Você envia a solicitação</li>
+              <li>A AACD analisa seus dados</li>
+              <li>Você recebe um e-mail para criar a senha</li>
+            </ol>
+          </div>
+
+          <small class="rodape-esquerdo">
+            © 2025 MovaHub · Plataforma de próteses 3D
+          </small>
+
+        </div>
+      </aside>
+
+      <!-- LADO DIREITO (formulário) -->
+      <main class="col-lg-7 painel-direito d-flex justify-content-center">
+
+        <div class="form-wrapper form-largo">
+
+          <a href="login-fabricante.html" class="link-voltar">
+            <i class="bi bi-chevron-left"></i> Voltar
+          </a>
+
+          <!-- FORMULÁRIO -->
+          <div id="areaForm">
+            <span class="tag-rosa">Fabricante</span>
+            <h2 class="titulo-form">Solicitar acesso</h2>
+            <p class="subtitulo-form">Preencha os dados abaixo. Não é preciso criar senha agora.</p>
+
+            <form id="formSolicitar" novalidate>
+
+              <!-- 1. Responsável -->
+              <h3 class="secao"><span class="num">1</span> Dados do responsável</h3>
+
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome completo</label>
+                <input type="text" id="nome" class="form-control campo" placeholder="Seu nome" required>
+                <div class="invalid-feedback">Digite seu nome completo.</div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" id="email" class="form-control campo"
+                         placeholder="contato@fablab.com.br" required>
+                  <div class="invalid-feedback">Digite um e-mail válido.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="telefone" class="form-label">Telefone / WhatsApp</label>
+                  <input type="tel" id="telefone" class="form-control campo"
+                         placeholder="(11) 90000-0000" minlength="14" maxlength="15" required>
+                  <div class="invalid-feedback">Digite um telefone com DDD.</div>
+                </div>
+              </div>
+
+              <!-- 2. FabLab ou empresa -->
+              <h3 class="secao"><span class="num">2</span> FabLab ou empresa</h3>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="tipo" class="form-label">Tipo</label>
+                  <select id="tipo" class="form-select campo" required>
+                    <option value="" selected disabled>Selecione</option>
+                    <option value="fablab-universitario">FabLab universitário</option>
+                    <option value="empresa">Empresa</option>
+                  </select>
+                  <div class="invalid-feedback">Escolha o tipo.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="organizacao" class="form-label">Nome da organização</label>
+                  <input type="text" id="organizacao" class="form-control campo"
+                         placeholder="Ex.: FabLab Mauá" required>
+                  <div class="invalid-feedback">Digite o nome da organização.</div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="cnpj" class="form-label">CNPJ</label>
+                  <input type="text" id="cnpj" class="form-control campo"
+                         placeholder="00.000.000/0000-00" minlength="18" maxlength="18" required>
+                  <div class="invalid-feedback">Digite o CNPJ completo.</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="cidade" class="form-label">Cidade / UF</label>
+                  <input type="text" id="cidade" class="form-control campo"
+                         placeholder="Santo André / SP" required>
+                  <div class="invalid-feedback">Digite a cidade e o estado.</div>
+                </div>
+              </div>
+
+              <!-- 3. Capacidade -->
+              <h3 class="secao"><span class="num">3</span> Capacidade de produção</h3>
+
+              <div class="mb-3 campo-curto">
+                <label for="impressoras" class="form-label">Quantidade de impressoras</label>
+                <input type="number" id="impressoras" class="form-control campo"
+                       placeholder="Ex.: 6" min="1" required>
+                <div class="invalid-feedback">Informe pelo menos 1 impressora.</div>
+              </div>
+
+              <!-- Tecnologia: várias opções -->
+              <div class="mb-3">
+                <span class="form-label d-block">Tecnologia <small class="text-muted">(escolha uma ou mais)</small></span>
+                <div class="d-flex flex-wrap gap-2">
+                  <input type="checkbox" class="btn-check" id="tec-fdm" name="tecnologia" value="FDM" autocomplete="off">
+                  <label class="chip" for="tec-fdm">FDM (filamento)</label>
+
+                  <input type="checkbox" class="btn-check" id="tec-sla" name="tecnologia" value="SLA" autocomplete="off">
+                  <label class="chip" for="tec-sla">SLA (resina)</label>
+
+                  <input type="checkbox" class="btn-check" id="tec-sls" name="tecnologia" value="SLS" autocomplete="off">
+                  <label class="chip" for="tec-sls">SLS</label>
+                </div>
+                <div class="erro-grupo" id="erroTecnologia">Escolha pelo menos uma tecnologia.</div>
+              </div>
+
+              <!-- Materiais: várias opções -->
+              <div class="mb-3">
+                <span class="form-label d-block">Materiais que consegue imprimir <small class="text-muted">(escolha um ou mais)</small></span>
+                <div class="d-flex flex-wrap gap-2">
+                  <input type="checkbox" class="btn-check" id="mat-pla" name="material" value="PLA" autocomplete="off">
+                  <label class="chip" for="mat-pla">PLA</label>
+
+                  <input type="checkbox" class="btn-check" id="mat-petg" name="material" value="PETG" autocomplete="off">
+                  <label class="chip" for="mat-petg">PETG</label>
+
+                  <input type="checkbox" class="btn-check" id="mat-abs" name="material" value="ABS" autocomplete="off">
+                  <label class="chip" for="mat-abs">ABS</label>
+
+                  <input type="checkbox" class="btn-check" id="mat-tpu" name="material" value="TPU" autocomplete="off">
+                  <label class="chip" for="mat-tpu">TPU</label>
+
+                  <input type="checkbox" class="btn-check" id="mat-nylon" name="material" value="Nylon" autocomplete="off">
+                  <label class="chip" for="mat-nylon">Nylon</label>
+                </div>
+                <div class="erro-grupo" id="erroMaterial">Escolha pelo menos um material.</div>
+              </div>
+
+              <!-- 4. Finalizar -->
+              <h3 class="secao"><span class="num">4</span> Para finalizar</h3>
+
+              <div class="mb-3">
+                <label for="mensagem" class="form-label">Mensagem (opcional)</label>
+                <textarea id="mensagem" class="form-control campo campo-texto" rows="3"
+                          placeholder="Experiência com próteses ou projetos sociais, ou o motivo do seu interesse."></textarea>
+              </div>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="termos" required>
+                <label class="form-check-label" for="termos">
+                  Li e aceito os <a href="#" class="link-vermelho">termos de uso</a> e a
+                  <a href="#" class="link-vermelho">política de privacidade</a>.
+                </label>
+                <div class="invalid-feedback">Você precisa aceitar para continuar.</div>
+              </div>
+
+              <button type="submit" class="btn-entrar w-100 mt-4">Enviar solicitação</button>
+
+            </form>
+
+            <p class="texto-conta">
+              Já tem conta?
+              <a href="login-fabricante.html" class="link-vermelho">Fazer login</a>
+            </p>
+          </div>
+
+          <!-- MENSAGEM DE SUCESSO (começa escondida) -->
+          <div id="areaSucesso" class="sucesso d-none">
+            <div class="sucesso-icone"><i class="bi bi-check-lg"></i></div>
+            <h2 class="titulo-form">Solicitação enviada!</h2>
+            <p class="subtitulo-form">
+              A AACD vai analisar seus dados. Você receberá a resposta no e-mail
+              <strong id="emailEnviado"></strong>.
+            </p>
+            <a href="index.html" class="btn-entrar d-block text-center text-decoration-none w-100 pt-3">
+              Voltar ao início
+            </a>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="solicitar.js"></script>
+</body>
+</html>
