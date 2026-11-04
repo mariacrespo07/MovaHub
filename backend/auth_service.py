@@ -1,8 +1,6 @@
 from database import get_connection
-from security import verificar_senha
 
 MSG_INVALIDO = "E-mail ou senha incorretos."
-
 
 def autenticar(email: str, senha: str, tipo: str):
     """Retorna (dados_do_usuario, None) se der certo, ou (None, mensagem_de_erro)."""
@@ -13,7 +11,7 @@ def autenticar(email: str, senha: str, tipo: str):
     try:
         cursor = conn.cursor(dictionary=True)
 
-        # 1) busca o usuário pelo e-mail e pelo tipo do portal
+        # busca o usuário pelo e-mail e pelo tipo
         cursor.execute(
             """SELECT id_usuario, nome_usuario, email, senha_usuario, tipo, status_usuario
                FROM usuario
@@ -22,8 +20,9 @@ def autenticar(email: str, senha: str, tipo: str):
         )
         usuario = cursor.fetchone()
 
-        # mensagem genérica: não revela se o e-mail existe ou não
-        if not usuario or not verificar_senha(senha, usuario["senha_usuario"]):
+        # compara a senha digitada com a que está no banco
+        # (mensagem genérica: não revela se o e-mail existe ou não)
+        if not usuario or usuario["senha_usuario"] != senha:
             return None, MSG_INVALIDO
 
         if usuario["status_usuario"] != "ativo":
@@ -36,7 +35,7 @@ def autenticar(email: str, senha: str, tipo: str):
             "tipo": tipo,
         }
 
-        # 2) confere o vínculo na tabela específica
+        # confere o vínculo na tabela específica
         if tipo == "aacd":
             cursor.execute(
                 """SELECT f.id_funcionario_aacd, f.cargo,
