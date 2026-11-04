@@ -1,0 +1,159 @@
+/* ===== Painel esquerdo fixo ao rolar (telas grandes) ===== */
+.painel-esquerdo.sol {
+  padding: 0;
+}
+
+.painel-sticky {
+  padding: 60px;
+  min-height: 100%;
+}
+
+@media (min-width: 992px) {
+  .painel-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+
+.passos {
+  margin: 28px 0 0;
+  padding-left: 20px;
+  line-height: 2;
+  opacity: 0.95;
+}
+
+/* ===== Lado direito ===== */
+.form-largo {
+  max-width: 560px;
+  padding: 20px 0 40px;
+}
+
+.secao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 34px 0 18px;
+}
+
+.secao .num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e5000b;
+  color: #fff;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo-curto {
+  max-width: 220px;
+}
+
+/* Campos de seleção e texto grande */
+.form-select.campo {
+  padding-right: 40px;
+}
+
+.campo-texto {
+  height: auto;
+  padding: 14px 20px;
+  resize: none;
+}
+
+/* ===== Botões de marcar (várias opções) ===== */
+.chip {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #374151;
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.chip:hover {
+  border-color: #e5000b;
+}
+
+.btn-check:checked + .chip {
+  background: #fde8ea;
+  border-color: #e5000b;
+  color: #e5000b;
+  font-weight: 600;
+}
+
+.btn-check:focus-visible + .chip {
+  box-shadow: 0 0 0 3px rgba(229, 0, 11, 0.2);
+}
+
+/* Erro dos grupos de marcar */
+.erro-grupo {
+  display: none;
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 8px;
+}
+
+.erro-grupo.mostrar {
+  display: block;
+}
+
+/* Checkbox dos termos */
+.form-check-input:checked {
+  background-color: #e5000b;
+  border-color: #e5000b;
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* ===== Mensagem de sucesso ===== */
+.sucesso {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.sucesso-icone {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: #fde8ea;
+  color: #e5000b;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sucesso .subtitulo-form {
+  margin-bottom: 28px;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 991px) {
+  .painel-sticky {
+    padding: 40px 28px;
+    gap: 40px;
+  }
+
+  .passos {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .campo-curto {
+    max-width: 100%;
+  }
+}
