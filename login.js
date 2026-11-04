@@ -1,28 +1,82 @@
-const form = document.getElementById("formLogin");
-const campoSenha = document.getElementById("senha");
-const btnOlho = document.getElementById("btnOlho");
+const form = document.getElementById('formLogin');
+const campoEmail = document.getElementById('email');
+const campoSenha = document.getElementById('senha');
+const btnOlho = document.getElementById('btnOlho');
+const btnEntrar = form.querySelector('.btn-entrar');
 
-// Mostrar / esconder senha
-btnOlho.addEventListener("click", () => {
-  const estaOculta = campoSenha.type === "password";
-  campoSenha.type = estaOculta ? "text" : "password";
+// caixa de mensagem criada via JS (serve para erro e para sucesso)
+const caixaMsg = document.createElement('div');
+caixaMsg.className = 'alert d-none';
+caixaMsg.setAttribute('role', 'alert');
+btnEntrar.before(caixaMsg);
 
-  const icone = btnOlho.querySelector("i");
-  icone.className = estaOculta ? "bi bi-eye-slash" : "bi bi-eye";
+btnOlho.addEventListener('click', () => {
+  const mostrando = campoSenha.type === 'text';
+  campoSenha.type = mostrando ? 'password' : 'text';
+  btnOlho.querySelector('i').className = mostrando ? 'bi bi-eye' : 'bi bi-eye-slash';
 });
 
-// Validação do formulário
-form.addEventListener("submit", (evento) => {
-  evento.preventDefault();
+function mostrarMensagem(msg, tipo) {
+  caixaMsg.textContent = msg;
+  caixaMsg.className = `alert alert-${tipo}`; // 'danger' ou 'success'
+}
 
-  // Marca os campos inválidos em vermelho
-  form.querySelectorAll(".campo").forEach((campo) => {
-    campo.classList.toggle("is-invalid", !campo.checkValidity());
-  });
+function esconderMensagem() {
+  caixaMsg.classList.add('d-none');
+}
 
-  if (!form.checkValidity()) return;
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  esconderMensagem();
 
-  // Aqui entra a ligação com o back-end quando ele existir.
-  // Por enquanto, só mostra uma mensagem de teste.
-  alert("Login enviado! (falta conectar ao back-end)");
+  const emailOk = campoEmail.checkValidity();
+  const senhaOk = campoSenha.checkValidity();
+  campoEmail.classList.toggle('is-invalid', !emailOk);
+  campoSenha.classList.toggle('is-invalid', !senhaOk);
+  if (!emailOk || !senhaOk) return;
+
+  btnEntrar.disabled = true;
+  btnEntrar.textContent = 'Entrando...';
+
+  let loginOk = false;
+
+  try {
+    const resposta = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: campoEmail.value.trim(),
+        senha: campoSenha.value,
+        tipo: form.dataset.tipo
+      })
+    });
+
+    let dados;
+    try {
+      dados = await resposta.json();
+    } catch {
+      mostrarMensagem(`Resposta inesperada (HTTP ${resposta.status}). Abra a página por http://127.0.0.1:8000.`, 'danger');
+      return;
+    }
+
+    if (resposta.ok) {
+      loginOk = true;
+      mostrarMensagem(`Login efetuado com sucesso! Bem-vindo(a), ${dados.nome}.`, 'success');
+      btnEntrar.textContent = 'Redirecionando...';
+      setTimeout(() => {
+        window.location.href = dados.redirect;
+      }, 1500);
+    } else {
+      mostrarMensagem(dados.erro || 'Não foi possível entrar.', 'danger');
+    }
+  } catch (err) {
+    console.error(err);
+    mostrarMensagem('Não foi possível conectar ao servidor. Ele está rodando?', 'danger');
+  } finally {
+    // em caso de sucesso, o botão fica travado até o redirecionamento
+    if (!loginOk) {
+      btnEntrar.disabled = false;
+      btnEntrar.textContent = 'Entrar na plataforma';
+    }
+  }
 });
